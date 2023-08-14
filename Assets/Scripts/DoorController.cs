@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 
@@ -14,17 +13,17 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.TryGetComponent(out PlayerController player))
         {
-            _animator.SetBool("IsOpen", true);
+            _animator.SetBool(AnimatorDoorController.Params.IsOpen, true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.TryGetComponent(out PlayerController player))
         {
-            _animator.SetBool("IsOpen", false);
+            _animator.SetBool(AnimatorDoorController.Params.IsOpen, false);
         }
     }
 }

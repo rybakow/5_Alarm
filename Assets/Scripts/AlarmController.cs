@@ -18,7 +18,7 @@ public class AlarmController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.TryGetComponent(out PlayerController player))
         {
             _isInArea = true;
             _audioSource.Play();
@@ -27,11 +27,10 @@ public class AlarmController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.TryGetComponent(out PlayerController player))
             _isInArea = false;
     }
-
-
+    
     private void FixedUpdate()
     {
         ControlAlarmSound();

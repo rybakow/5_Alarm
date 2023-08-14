@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * _speed;
         
         _spriteRenderer.flipX = movement < 0 ? true : false;
-        _animator.SetFloat("Speed",  Math.Abs(movement));
+        
+        _animator.SetFloat(AnimatorPlayerController.Params.Speed, Math.Abs(movement));
     }
 }
